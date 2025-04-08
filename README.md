@@ -6,18 +6,18 @@ This version is **precompiled** and **removes the SciPy dependency** to reduce d
 
 ---
 
-## 🚀 Features
+##  Features
 
-- ✅ **No need for CMake, make, or building anything**
-- ✅ **No SciPy dependency**
-- ✅ Lightweight shared library (~6MB)
-- ✅ Compatible with Python 3.7+
-- ✅ Ideal for edge and embedded Linux systems
-- ✅ Maintains core LightGBM functionality
+-  **No need for CMake, make, or building anything**
+-  **No SciPy dependency**
+-  Lightweight shared library (~6MB)
+-  Compatible with Python 3.7+
+-  Ideal for edge and embedded Linux systems
+-  Maintains core LightGBM functionality
 
 ---
 
-## ⚠️ Notes
+##  Notes
 
 - This package is **precompiled**, so it's **ready to use** — no building required.
 - `lgb._version` will not work. To check if the installation works, run a simple train + predict test (see below).
@@ -25,6 +25,6 @@ This version is **precompiled** and **removes the SciPy dependency** to reduce d
 
 ---
 
-## 📦 Installation (Manual)
+## Installation (Manual)
 
 Since this package is optimized for edge devices, you can manually copy it to your target system
