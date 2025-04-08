@@ -25,6 +25,50 @@ This version is **precompiled** and **removes the SciPy dependency** to reduce d
 
 ---
 
-## Installation (Manual)
+##  Installation Guide – LightGBM-BeagleBone
 
-Since this package is optimized for edge devices, you can manually copy it to your target system
+A **minimal, precompiled version of LightGBM** without SciPy or build tools.  
+Designed for lightweight environments like **BeagleBone (Debian 9+)**.
+
+---
+
+###  Requirements
+
+Make sure Python 3.7 and NumPy are installed:
+
+```bash
+sudo apt-get update
+sudo apt-get install python3-numpy libgomp1
+```
+
+##  Step 1: Download the Repository
+
+```bash
+git clone https://github.com/DanielaKaws/lightgbm-beaglebone.git
+cd lightgbm-beaglebone
+```
+
+##  Step 2: Ensure the correct directory structure exists
+
+```bash
+mkdir -p ~/.local/lib/python3.7/site-packages/ #if not present
+mkdir -p ~/var/lightgbm
+```
+
+```bash
+cp -r lightgbm ~/.local/lib/python3.7/site-packages/
+cp lightgbm/lib/lib_lightgbm.so ~/var/lightgbm/
+```
+
+##  Step 3: Run the test script
+
+```bash
+python3 test.py
+```
+
+You should see prediction output like:
+Predictions: [0.5513 0.4623 0.4553 0.4623 0.5299]
+
+
+
+
