@@ -20,7 +20,7 @@ This version is **precompiled** and **removes the SciPy dependency** to reduce d
 ##  Notes
 
 - This package is **precompiled**, so it's **ready to use** — no building required.
-- `lgb._version` will not work. To check if the installation works, run a simple train + predict test (see below).
+- `lgb._version` will not work. To check if the installation works, run a simple train + predict test (test.py included).
 - Make sure `lib_lightgbm.so` is correctly placed in `lightgbm/lib/`.
 
 ---
