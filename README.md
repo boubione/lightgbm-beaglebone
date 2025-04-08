@@ -71,4 +71,14 @@ Predictions: [0.5513 0.4623 0.4553 0.4623 0.5299]
 
 
 
+## Contact
+
+For questions, feedback, or contributions, feel free to:
+
+- Open an issue
+- Advice is much apreciated
+
+
+
+
 
